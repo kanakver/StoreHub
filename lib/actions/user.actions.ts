@@ -5,7 +5,7 @@ import { parseStringify } from "../utils";
 import { createAdminClient  } from "../appwrite";
 import { appwriteConfig  } from "../appwrite/config";
 import { cookies } from "next/headers";
-
+import { avatarPlaceholderUrl } from "@/constants";
 const getUserByEmail = async(email: string) => {
     const { databases } = await createAdminClient();
 
@@ -74,7 +74,7 @@ export const createAccount = async({
                     {
                         fullName,
                         email,
-                        avatar: "https://mighty.tools/mockmind-api/content/cartoon/28.jpg",
+                        avatar:avatarPlaceholderUrl,
                         accountId,
                     }
                 );
