@@ -4,7 +4,7 @@ import { z } from "zod";
 import { createAccount } from "@/lib/actions/user.actions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-
+import OtpModel from "@/components/OTPModel";
 import { Button } from "@/components/ui/button";
 import {
     Form,
@@ -117,6 +117,10 @@ const AuthForm = ({ type }: { type: FormType }) => {
                     </div>
                 </form>
             </Form>
+            {accountId && <OtpModel 
+                email={form.getValues("email")}
+                accountId={accountId}
+            />}
         </>
     )
 };
