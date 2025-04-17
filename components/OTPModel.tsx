@@ -21,7 +21,13 @@ import { Button } from "@/components/ui/button";
 import { verifySecret, sendEmailOTP } from "@/lib/actions/user.actions";
 import { useRouter } from "next/navigation";
 
-const OtpModal = ({accountId,email,}: {accountId: string;email: string;}) => {
+const OtpModal = ({
+  accountId,
+  email,
+}: {
+  accountId: string;
+  email: string;
+}) => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(true);
   const [password, setPassword] = useState("");

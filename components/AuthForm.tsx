@@ -1,7 +1,7 @@
 "use client";
 
 import { z } from "zod";
-import { createAccount } from "@/lib/actions/user.actions";
+import { createAccount, signInUser } from "@/lib/actions/user.actions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import OtpModel from "@/components/OTPModel";
@@ -44,21 +44,23 @@ const AuthForm = ({ type }: { type: FormType }) => {
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         setIsLoading(true);
         setErrorMessage("");
-
+    
         try {
-            const user = await createAccount({
-                fullName: values.username || "",
-                email: values.email,
-            });
-            setAccountId(user.accountId);
+          const user =
+            type === "sign-up"
+              ? await createAccount({
+                  fullName: values.username || "",
+                  email: values.email,
+                })
+              : await signInUser({ email: values.email });
+    
+          setAccountId(user.accountId);
+        } catch {
+          setErrorMessage("Failed to create account. Please try again.");
+        } finally {
+          setIsLoading(false);
         }
-        catch(error){
-            setErrorMessage("failed to create account. please try again.");
-        }
-        finally{
-            setIsLoading(false);
-        }
-    };
+      };
     return (
         <>
             <Form {...form}>
