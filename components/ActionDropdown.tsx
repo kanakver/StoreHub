@@ -16,7 +16,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useState } from "react";
-import Image from "next/image";
+
 import { Models } from "node-appwrite";
 import { actionsDropdownItems } from "@/constants";
 import Link from "next/link";
@@ -123,7 +123,7 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
             <Button onClick={handleAction} className="modal-submit-button">
               <p className="capitalize">{value}</p>
               {isLoading && (
-                <Image
+                <img
                   src="/assets/icons/loader.svg"
                   alt="loader"
                   width={24}
@@ -142,7 +142,7 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
     <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
       <DropdownMenu open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
         <DropdownMenuTrigger className="shad-no-focus">
-          <Image
+          <img
             src="/assets/icons/dots.svg"
             alt="dots"
             width={34}
@@ -176,7 +176,7 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
                   download={file.name}
                   className="flex items-center gap-2"
                 >
-                  <Image
+                  <img
                     src={actionItem.icon}
                     alt={actionItem.label}
                     width={30}
@@ -186,7 +186,7 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
                 </Link>
               ) : (
                 <div className="flex items-center gap-2">
-                  <Image
+                  <img
                     src={actionItem.icon}
                     alt={actionItem.label}
                     width={30}
